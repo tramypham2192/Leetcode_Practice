@@ -1,0 +1,23 @@
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+    def findRunnerUp(arr):
+        lst = list(arr)
+        # get the max element in list
+        x = findMax(lst)
+        newLst = [i for i in lst if i != x]
+        #get the runner up:
+        newLst.sort()
+        return newLst[len(newLst) - 1]
+
+    def findMax(lst):
+        max = lst[0]
+        for i in lst:
+            if max < i:
+                max = i
+        return max
+
+    print(findRunnerUp(arr))
+    
+
+
