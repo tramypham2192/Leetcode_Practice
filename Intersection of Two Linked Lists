@@ -1,0 +1,73 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+            int lengthListA = getLength(headA);
+            int lengthListB = getLength(headB);
+            ListNode curA = headA;
+            ListNode curB = headB;
+            if (lengthListA == lengthListB && lengthListA == 1){
+                if (headA.val == headB.val){
+                    return headA;
+                }
+                else {
+                    return null;
+                }
+            }
+            else if (lengthListA == lengthListB && lengthListA != 1){
+                while (curA != curB){
+                    curA = curA.next;
+                    curB = curB.next;
+                }
+                return curA;
+            }
+            else {               
+                if (lengthListA > lengthListB){
+                    int skipA = lengthListA - lengthListB;
+                    int start = 0;
+                    while (start < skipA){
+                        curA = curA.next;
+                        start += 1;
+                    }
+                    while (curA != curB){
+                        curA = curA.next;
+                        curB = curB.next;
+                    }
+                    return curA;
+                }
+                else if(lengthListA < lengthListB){
+                    int skipB = lengthListB - lengthListA;
+                    int start = 0;
+                    while (start < skipB){
+                        curB = curB.next;
+                        start += 1;
+                    }
+                    while (curA != curB){
+                        curA = curA.next;
+                        curB = curB.next;
+                    }
+                    return curA;
+                }
+            }        
+            return curA;
+    }
+    public int getLength(ListNode head){
+            int len = 0;
+            ListNode cur = head;
+            while (cur != null){
+                len += 1;
+                cur = cur.next;
+            }
+            return len;
+        }
+
+}
