@@ -1,0 +1,44 @@
+
+
+    public static String getSmallestAndLargest(String s, int k) {
+        String smallest = "";
+        String largest = "";
+        
+        // Complete the function
+        // 'smallest' must be the lexicographically smallest substring of length 'k'
+        // 'largest' must be the lexicographically largest substring of length 'k'
+        char smallestAsciiFirstChar = s.charAt(0);
+        int indexOfSmallestChar = 0;
+        char largestAsciiFirstChar = s.charAt(0);
+        int indexOfLargestChar = 0;
+        int asciiSmallestChar = smallestAsciiFirstChar;
+        int asciiLargestChar = largestAsciiFirstChar;
+
+        for (int i = 0; i <= s.length() - k; i++){
+            if (i == 0){
+                smallest = s.substring(0, k);
+                largest = s.substring(0, k);
+            }
+            else {
+                char ch = s.charAt(i);
+                int asciiCh = ch;
+                if (asciiSmallestChar >= asciiCh) {
+                    asciiSmallestChar = asciiCh;
+                    indexOfSmallestChar = i;
+                    if (smallest.compareTo(s.substring(indexOfSmallestChar, indexOfSmallestChar + k)) > 0) {
+                        smallest = s.substring(indexOfSmallestChar, indexOfSmallestChar + k);
+                    }
+                }
+                if (asciiLargestChar <= asciiCh) {
+                    asciiLargestChar = asciiCh;
+                    indexOfLargestChar = i;
+                    if (largest.compareTo(s.substring(indexOfLargestChar, indexOfLargestChar + k)) < 0) {
+                        largest = s.substring(indexOfLargestChar, indexOfLargestChar + k);
+                    }
+                }
+            }
+        }
+        return smallest + "\n" + largest;
+    }
+
+
