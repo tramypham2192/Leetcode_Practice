@@ -1,0 +1,24 @@
+class Solution:
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+        # flip horizontally
+        for i in range(len(image)):
+            if len(image[i]) <= 3:
+                image[i][0], image[i][len(image[i]) - 1] = image[i][len(image[i]) - 1], image[i][0]
+            else:
+                if len(image[i]) % 2 != 0:
+                    if round(len(image[i]) / 2) % 2 != 0:
+                        for j in range(round(len(image[i]) / 2) - 1):
+                            image[i][j], image[i][len(image[i]) - 1 - j] = image[i][len(image[i]) - 1 - j], image[i][j]
+                    for j in range(round(len(image[i]) / 2)):
+                        image[i][j], image[i][len(image[i]) - 1 - j] = image[i][len(image[i]) - 1 - j], image[i][j]
+                elif len(image[i]) % 2 == 0:
+                    for j in range(round(len(image[i]) / 2)):
+                        image[i][j], image[i][len(image[i]) - 1 - j] = image[i][len(image[i]) - 1 - j], image[i][j]
+        # invert each image[i]
+            for k in range(len(image[i])):
+                if image[i][k] == 0:
+                    image[i][k] = 1
+                else:
+                    image[i][k] = 0
+        return image
+        
