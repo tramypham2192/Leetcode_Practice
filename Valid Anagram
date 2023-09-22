@@ -1,0 +1,28 @@
+import java.util.Hashtable;
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        Hashtable<Character,Integer> table1 = convertStringToHashTable(s);
+        Hashtable<Character,Integer> table2 = convertStringToHashTable(t);
+        if (table1.equals(table2)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Hashtable convertStringToHashTable(String s){
+        Hashtable<Character,Integer> table1 = new Hashtable<Character,Integer>();
+        for (Character c : s.toCharArray()){
+            int count = 0;
+            if (table1.containsKey(c)){
+                table1.put(c, table1.get(c) + 1);
+            }
+            else {
+                table1.put(c, 1);
+            }
+        }
+        return table1;
+    }
+}

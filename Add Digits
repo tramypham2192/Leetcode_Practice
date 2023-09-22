@@ -1,0 +1,23 @@
+public int addDigits(int num) {
+        int sumOneDigit = 0;
+        while (num > 0) {
+            int x = num % 10;
+            sumOneDigit += x;
+            num = num / 10;
+        }
+        int result = sumOneDigit;
+        while (result > 9){
+            result = sumDigits(result);
+        }
+        return result;
+    }
+
+    public int sumDigits(int n){
+        int sum =0;
+        while (n > 0) {
+            int x = n % 10;
+            sum += x;
+            n = n / 10;
+      }
+      return sum;
+    }

@@ -1,0 +1,43 @@
+class Solution:
+    def firstPalindrome(self, words: List[str]) -> str:
+        result_str = ""
+        
+        # check each element of list
+        for i in range (len(words)):
+            if len(words[i]) < 2:
+                return words[i]
+            check_Palindrome = True
+            # each element has two pointers running on it
+            ptr1 = 0
+            ptr2 = len(words[i]) - 1
+            # if len of element is even
+            if len(words[i]) % 2 == 0 :
+                while ptr1 < ptr2:
+                    if words[i][ptr1] == words[i][ptr2]:
+                        ptr1 += 1
+                        ptr2 -= 1
+                    else:
+                        check_Palindrome = False
+                        break
+                if check_Palindrome == False:
+                    continue   
+                if check_Palindrome == True:
+                    result_str = words[i] 
+                    return result_str          
+            # if len of element is odd
+            if len(words[i]) % 2 != 0:
+                while ptr1 < ptr2 - 1:
+                    if words[i][ptr1] == words[i][ptr2]:
+                        ptr1 += 1
+                        ptr2 -= 1
+                    else:
+                        check_Palindrome = False
+                        break
+                if check_Palindrome == False:
+                    continue
+                if check_Palindrome == True:
+                    result_str = words[i]
+                    return result_str 
+
+        # if the first element is palindrome occur, return
+        return result_str

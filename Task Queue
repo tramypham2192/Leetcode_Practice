@@ -1,0 +1,109 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+class Result {
+
+    /*
+     * Complete the 'minTime' function below.
+     *
+     * The function is expected to return a LONG_INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY batchSize
+     *  2. INTEGER_ARRAY processingTime
+     *  3. INTEGER_ARRAY numTasks
+     */
+
+    public static long minTime(List<Integer> batchSize, List<Integer> processingTime, List<Integer> numTasks) {
+    // Write your code here
+        // int result = 0;
+        //a list to track how many times each queue needed to complete task
+        // List<Integer> numberOfTimesNeed = new ArrayList<>();
+        // for (int i = 0; i < batchSize.size(); i++){
+        //     int numberOfTimeForThisQueue = 0;
+        //     if (numTasks.get(i) % batchSize.get(i) == 0){
+        //         numberOfTimeForThisQueue = numTasks.get(i) / batchSize.get(i);
+        //         numberOfTimesNeed.add(numberOfTimeForThisQueue);
+        //     }
+        //     else {
+        //         numberOfTimeForThisQueue = numTasks.get(i) / batchSize.get(i) + 1;
+        //         numberOfTimesNeed.add(numberOfTimeForThisQueue);
+        //     }
+        // }
+        //a list to show amount of time each queue needed to complete task
+        // List<Integer> amountOfTimeNeed = new ArrayList<>(); 
+        // for (int i = 0; i < numberOfTimesNeed.size(); i++){
+        //     amountOfTimeNeed.add(numberOfTimesNeed.get(i) * processingTime.get(i));
+        // }
+        // //find out the maximum amount of time, that would be the result
+        // for (int i = 0; i < amountOfTimeNeed.size(); i++){
+        //     if (result < amountOfTimeNeed.get(i)){
+        //         result = amountOfTimeNeed.get(i);
+        //     }
+        // }
+        // return result;
+    }
+
+}
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int batchSizeCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> batchSize = IntStream.range(0, batchSizeCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine().replaceAll("\\s+$", "");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .map(String::trim)
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        int processingTimeCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> processingTime = IntStream.range(0, processingTimeCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine().replaceAll("\\s+$", "");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .map(String::trim)
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        int numTasksCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> numTasks = IntStream.range(0, numTasksCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine().replaceAll("\\s+$", "");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .map(String::trim)
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        long result = Result.minTime(batchSize, processingTime, numTasks);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}

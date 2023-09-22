@@ -1,0 +1,23 @@
+
+
+	public static int getHeight(Node root){
+      //Write your code here
+      return depthOfTree(root) - 1;
+    }
+    public static int depthOfTree(Node root){
+      if (root == null){
+          return 0;
+      }
+      else {
+            int leftDepth = depthOfTree(root.left);
+            int rightDepth = depthOfTree(root.right);
+            //compare the depth of left and right
+            if (leftDepth > rightDepth){
+                return leftDepth + 1;
+            }
+            else {
+                return rightDepth + 1;
+            }
+      }  
+    }
+    

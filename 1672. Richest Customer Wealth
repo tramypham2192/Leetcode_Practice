@@ -1,0 +1,19 @@
+/**
+ * @param {number[][]} accounts
+ * @return {number}
+ */
+var maximumWealth = function(accounts) {
+    let maxWealth = 0
+    for (var i = 0; i < accounts.length; i++){      
+        let eachWealth = 0
+
+        for (var j = 0; j < accounts[i].length ; j++){
+            eachWealth = eachWealth + accounts[i][j]
+            // console.log(eachWealth)
+        }
+        if (eachWealth > maxWealth){
+            maxWealth = eachWealth
+        }
+    }
+    return maxWealth
+}

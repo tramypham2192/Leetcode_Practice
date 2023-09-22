@@ -1,0 +1,30 @@
+class Solution {
+    public String removeDuplicates(String s) {
+        //1)push character of string into stack
+        //create a new stack
+        Stack<Character> newStack = new Stack<>();
+        //push characters of string into stack and check
+        //2)check if the last element is the same
+        //3)pop that element out of stack, 
+        //and not push the next charactr into stack
+        if (s.length() <= 1){
+            return s;
+        }
+        newStack.push(s.charAt(0));
+        for (int i = 1; i < s.length(); i++){
+            if (!(newStack.isEmpty()) && (newStack.peek().equals(s.charAt(i)))){
+                newStack.pop();
+            }
+            else {
+                newStack.push(s.charAt(i));
+            }
+        }
+        //4)join stack elements together
+        String nonDuplicateStr = "";
+        Iterator value = newStack.iterator();
+        while (value.hasNext()) {
+            nonDuplicateStr += value.next();
+        }
+        return nonDuplicateStr;
+    }
+}
