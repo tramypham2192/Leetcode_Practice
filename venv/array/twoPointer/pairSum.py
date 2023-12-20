@@ -19,3 +19,22 @@ def pairSum(lst, x):
 
 
 print(pairSum([10, 20, 35, 50, 75, 80], 70))
+
+def twoSum(nums, target):
+  pointer1 = 0
+  pointer2 = len(nums) - 1
+  nums.sort()
+  while pointer1 < pointer2:
+    sum = nums[pointer1] + nums[pointer2]
+    if sum < target:
+      pointer1 += 1
+    elif sum > target:
+      pointer2 -= 1
+    elif sum == target:
+      return [pointer1, pointer2]
+
+newArr = [3, 2, 4]
+newArr.sort()
+print(newArr)
+# print(twoSum([4, 5, 32], 9))
+print(twoSum([3, 2, 4], 6))
