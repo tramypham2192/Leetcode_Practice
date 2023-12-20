@@ -21,6 +21,7 @@
 # print(pairSum([10, 20, 35, 50, 75, 80], 70))
 
 def twoSum(nums, target):
+    result = []
     pointer1 = 0
     pointer2 = len(nums) - 1
     # this creates shallow copy, then sort newArr also mean sort nums
@@ -40,16 +41,28 @@ def twoSum(nums, target):
         elif sum == target:
             print(nums)
             print(newArr)
-            return [nums.index(newArr[pointer1]), nums.index(newArr[pointer2])]
+            for i in range(len(nums)):
+                if nums[i] == newArr[pointer1]:
+                    result.append(i)
+            for j in range(len(nums)):
+                if nums[j] == newArr[pointer2] and j not in result:  # need j not in result for test case [3, 3]
+                    result.append(j)
+            return result
 
-
-# newArr = [3, 2, 4]
-# newArr.sort()
-# print(newArr)
-# print(twoSum([4, 5, 32], 9))
-print(twoSum([3, 2, 4], 6))
-
+# test shallow coppy or deep copy
 # arr1 = [1, 2, 4]
 # arr2 = arr1
 # arr2.append(10)
 # print(arr1)
+
+# test sort() method
+# newArr = [3, 2, 4]
+# newArr.sort()
+# print(newArr)
+
+# test cases
+# print(twoSum([4, 5, 32], 9))
+# print(twoSum([3, 2, 4], 6))
+print(twoSum([3, 3], 6))
+print(twoSum([3, 2, 3], 6))
+
