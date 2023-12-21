@@ -29,25 +29,18 @@
 
 # SOLUTION 2: WITHOUT WRITING HELPER FUNCTION IS PALINDROME
 def isPalindromeAfterDeletingAtMostOneChar(s):
-    # p1=0
-    # p2=len(s)-1
-    # while p1<=p2:
-    #     if s[p1]!=s[p2]:
-    #         string1=s[:p1]+s[p1+1:]
-    #         string2=s[:p2]+s[p2+1:]
-    #         return string1==string1[::-1] or string2==string2[::-1]
-    #     p1+=1
-    #     p2-=1
+    p1=0
+    p2=len(s)-1
+    while p1<=p2:
+        if s[p1]!=s[p2]:
+            string1=s[:p1]+s[p1+1:]
+            string2=s[:p2]+s[p2+1:]
+            return string1==string1[::-1] or string2==string2[::-1]
+        p1+=1
+        p2-=1
+    return True
 
-    # p1 = 0
-    # p2 = len(s) - 1
-    # while p1 <= p2:
-    #     if s[p1] != s[p2]:
-    for p1 in range(len(s)):
-        string1 = s[:p1] + s[p1 + 1:]
-        if string1 == string1[::-1]:
-            return True
-    return False
+
 
 # test [: : -1] method
 # print("abc"[::-1])
